@@ -1,5 +1,10 @@
 <!-- Pantalla de carga  -->
 <app-progress *ngIf="isLoading"></app-progress>
+<mat-toolbar class="my_app_bar">
+       
+    <span class="example-spacer"></span>
+    <button mat-button>Registrate</button>
+  </mat-toolbar>
 <div class="container" *ngIf=" !isLoading">
     <div class="row" >
         <div class="col-md-5 mx-auto text-center">
