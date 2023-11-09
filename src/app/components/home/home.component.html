@@ -2,18 +2,19 @@
     <h4>Productos</h4>
 
     <span class="example-spacer"></span>
-    <button mat-button>Registrate</button>
+    <button mat-button>Vender</button>
+    <button mat-button>Nuevo Producto</button>
 </mat-toolbar>
 <div class="container">
     <div class="row">
         <div class="col">
-            <ol class="list-group list-group-numbered products">
-                <li class="list-group-item d-flex justify-content-between align-items-start">
+            <ol class="list-group  products">
+                <li *ngFor="let product of products" class="list-group-item d-flex justify-content-between align-items-start">
                   <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
+                    <div class="fw-bold">(SKU) {{product.codigoProducto}}</div>
+                    {{product.nombreProducto}} - {{product.precioUnitario}} c/u
                   </div>
-                  <span class="badge bg-primary rounded-pill">14</span>
+                  <span class="badge bg-primary rounded-pill">{{product.cantidadProducto}}</span>
                 </li>
                 
               </ol>
