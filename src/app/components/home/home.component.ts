@@ -23,7 +23,8 @@ export class HomeComponent {
   }
 
 
-  async getProducts(): Promise<void> {
+
+  async getProducts() {
 
     let res: ResApiInterface = await this._productService.getProducts();
 

@@ -14,6 +14,8 @@ import { ProgressComponent } from './components/progress/progress.component';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {MatButtonModule} from '@angular/material/button';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProgressComponent
+    ProgressComponent,
+    AddProductComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
