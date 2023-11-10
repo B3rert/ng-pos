@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { LoginInterface } from 'src/app/interfaces/login.interface';
+import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
+import { UserInterface } from 'src/app/interfaces/user.interface';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers:[LoginService]
 })
 export class LoginComponent {
   //Declaracion de variables a utilizar
@@ -17,9 +20,32 @@ export class LoginComponent {
 
   //Intancia de servicios
   constructor(
-    //Declaracion de variables privadas
+    private _loginService: LoginService,
   ) {
-    
+    this.postLogin();
+  }
+
+  async postLogin(){
+
+    let user:UserInterface = {
+      usuario:"Niky",
+      clave:"123",
+    }
+
+    let res : ResApiInterface = await this._loginService.postLogin(user);
+
+
+    if(!res.succes){
+      console.error(res.response);
+      
+      alert("Algo salio mal");
+      return;
+    }
+
+
+      console.log(res.response);
+      
+
   }
 
   //guardar Token y navegar a la pantalla Home
@@ -39,11 +65,7 @@ export class LoginComponent {
     }
 
     //Interface de credenciales
-    let credenciales: LoginInterface = {
-      user: this.nombreInput,
-      password: this.claveInput,
-    }
-
+   
     //TODO: login
 
    

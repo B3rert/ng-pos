@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RegisterInterface } from 'src/app/interfaces/register.interface';
 
 @Component({
   selector: 'app-register',
@@ -39,12 +38,6 @@ async login(): Promise<void> {
     return
   }
 
-  //Interface de credenciales
-  let credenciales: RegisterInterface = {
-    user: this.nombreInput,
-    password: this.claveInput,
-    confirmPassword : this.confirmarClaveInput,
-  }
 
   //TODO: login
 
