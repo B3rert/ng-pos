@@ -25,6 +25,7 @@ export class HomeComponent {
   products: ProductInterface[] = [];
   documents: DocumentInterface[] = [];
   granTotal: number = 0;
+  isLoading: boolean = false;
 
   constructor(private _productService: ProductService,
     private _documentService: DocumentService,
@@ -38,11 +39,11 @@ export class HomeComponent {
   }
 
 
-
   async getProducts() {
 
+    this.isLoading = true;
     let res: ResApiInterface = await this._productService.getProducts();
-
+    this.isLoading = false;
 
     if (!res.success) {
       console.error(res.message);
@@ -111,19 +112,36 @@ export class HomeComponent {
     console.log(this.documents);
 
   }
-  async deleteProduct() {
+  async deleteProduct(index:number ) {
 
-    let res: ResApiInterface = await this._productService.deleteProduct("1000");
+     //dialog confurmar cierre de sesion
+     let verificador = await this._widgetService.openDialogActions({
+      title:  "Eliminar producto" ,
+      description:  "Esta acción no se peude revertir, ¿Estás seguro?" ,
+      verdadero: "Aceptar",
+      falso: "Cancelar",
+    });
 
+    if (!verificador) return;
+   
+    
+    this.isLoading = true;
+
+    let res: ResApiInterface = await this._productService.deleteProduct(this.products[index].codigoProducto);
+
+    this.isLoading = false;
 
     if (!res.success) {
       console.error(res.message);
 
-      alert("Algo salio mal");
+      this._widgetService.openSnackbar("Algo salio mal, intentalo más tarde.");
     }
 
 
-    console.log(res.message);
+    this.products.splice(index, 1);
+
+
+    this._widgetService.openSnackbar("Producto eliminado correctamente.");
 
   }
 
