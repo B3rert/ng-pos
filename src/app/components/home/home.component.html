@@ -7,10 +7,10 @@
     <button mat-button [matMenuTriggerFor]="menu"><mat-icon>arrow_drop_down</mat-icon> Reportes</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Catalogo de productos</button>
-      <button mat-menu-item>Documentos Resumidos</button>
-      <button mat-menu-item>Documentos Detallados</button>
+      <button mat-menu-item>Resumido Documentos</button>
+      <button mat-menu-item>Detallado Documentos</button>
     </mat-menu>
-    <button mat-button>Vender</button>
+    <button mat-button>Ventas</button>
     <button mat-button>Nuevo Producto</button>
     <button mat-icon-button (click)="logOut()">
       <mat-icon>logout</mat-icon>
@@ -23,13 +23,25 @@
 
       <h4 class="title_page">Productos ({{products.length}}) </h4>
       <span class="example-spacer"></span>
-      <h4 class="title_page">Gran Total ({{granTotal | currency}}) </h4>
+      <h4 class="title_page">Inventario valorizado ({{granTotal | currency}}) </h4>
+    </div>
+
+   
+    <div class="row">
+      <div class="col">
+        <input [(ngModel)]="searchText" (input)="filterProducts()" class="form-control" type="text" placeholder="Buscar">
+      </div>
     </div>
 
     <div class="row">
       <div class="col">
-        <ol class="list-group  products">
-          <li *ngFor="let product of products; let i = index" class="list-group-item d-flex justify-content-between align-items-start">
+
+<app-not-found *ngIf="filteredProducts.length == 0"></app-not-found>
+
+
+        <ol class="list-group  products" *ngIf="filteredProducts.length > 0">
+          <li *ngFor="let product of filteredProducts; let i = index"
+            class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
               <div>(SKU {{product.codigoProducto}}) {{product.nombreProducto}} </div>
               <div>Cantidad: {{product.cantidadProducto}} </div>

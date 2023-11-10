@@ -26,19 +26,33 @@ export class HomeComponent {
   documents: DocumentInterface[] = [];
   granTotal: number = 0;
   isLoading: boolean = false;
+  filteredProducts: ProductInterface[] = []; // Lista filtrada
+  searchText: string = ''; // Texto de búsqueda
 
   constructor(private _productService: ProductService,
     private _documentService: DocumentService,
-    private _transactionService:TransactionService,
-    private _widgetService:WidgetsService,
-    private _router:Router,
-    ) {}
+    private _transactionService: TransactionService,
+    private _widgetService: WidgetsService,
+    private _router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.getProducts();
   }
+ 
 
-
+  filterProducts() {
+    if (this.searchText.trim() === '') {
+      // Si la búsqueda está vacía, muestra todos los productos
+      this.filteredProducts = this.products;
+    } else {
+      // Filtra los productos según el texto de búsqueda
+      this.filteredProducts = this.products.filter(product =>
+        product.nombreProducto.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        product.codigoProducto.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    }
+  }
   async getProducts() {
 
     this.isLoading = true;
@@ -52,10 +66,11 @@ export class HomeComponent {
     }
 
     this.products = res.message;
+    this.filteredProducts = this.products;
 
 
     this.products.forEach(element => {
-      this.granTotal = (element.cantidadProducto *element.precioUnitario) + this.granTotal;
+      this.granTotal = (element.cantidadProducto * element.precioUnitario) + this.granTotal;
     });
 
   }
@@ -112,19 +127,19 @@ export class HomeComponent {
     console.log(this.documents);
 
   }
-  async deleteProduct(index:number ) {
+  async deleteProduct(index: number) {
 
-     //dialog confurmar cierre de sesion
-     let verificador = await this._widgetService.openDialogActions({
-      title:  "Eliminar producto" ,
-      description:  "Esta acción no se peude revertir, ¿Estás seguro?" ,
+    //dialog confurmar cierre de sesion
+    let verificador = await this._widgetService.openDialogActions({
+      title: "Eliminar producto",
+      description: "Esta acción no se peude revertir, ¿Estás seguro?",
       verdadero: "Aceptar",
       falso: "Cancelar",
     });
 
     if (!verificador) return;
-   
-    
+
+
     this.isLoading = true;
 
     let res: ResApiInterface = await this._productService.deleteProduct(this.products[index].codigoProducto);
@@ -151,8 +166,8 @@ export class HomeComponent {
 
     //dialog confurmar cierre de sesion
     let verificador = await this._widgetService.openDialogActions({
-      title:  "Cerrar sesión" ,
-      description:  "Se perderán los datos que no han sido guardados ¿Estás seguro?" ,
+      title: "Cerrar sesión",
+      description: "Se perderán los datos que no han sido guardados ¿Estás seguro?",
       verdadero: "Aceptar",
       falso: "Cancelar",
     });
