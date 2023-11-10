@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
+import { UserInterface } from 'src/app/interfaces/user.interface';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  providers:[RegisterService]
 })
 export class RegisterComponent {
 //Declaracion de variables a utilizar
@@ -17,17 +21,34 @@ isLoading: boolean = false;
 
 //Intancia de servicios
 constructor(
-  //Declaracion de variables privadas
+  private _registerService: RegisterService,
 ) {
-  
+  this.postLogin()
 }
 
-//guardar Token y navegar a la pantalla Home
-ngOnInit(): void {
-  // if (StorageService.token) {
-  //   this._router.navigate(['/station']);
-  // }
+async postLogin(){
+
+  let user:UserInterface = {
+    usuario:"Niky",
+    clave:"123",
+  }
+
+  let res : ResApiInterface = await this._registerService.postRegister(user);
+
+
+  if(!res.succes){
+    console.error(res.response);
+    
+    alert("Algo salio mal");
+    return;
+  }
+
+
+    console.log(res.response);
+    
+
 }
+
 
 //Validar usuario y contraseña
 async login(): Promise<void> {

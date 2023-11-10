@@ -5,7 +5,7 @@ import { UserInterface } from '../interfaces/user.interface';
 import { ResApiInterface } from '../interfaces/res-api.interface';
 
 @Injectable()
-export class LoginService {
+export class RegisterService {
     private _urlBase: string = "";
 
     //inicializar http
@@ -16,26 +16,27 @@ export class LoginService {
 
 
     //funcion que va a realizar consumo privado
-    private _postLogin(user: UserInterface) {
+    private _postRegister(user: UserInterface) {
         //configurar headers
         let paramsStr = JSON.stringify(user); //JSON to String
         let headers = new HttpHeaders({ "Content-Type": "application/json" });
         //consumo de api
-        return this._http.post(`${this._urlBase}login`, paramsStr, { headers: headers });
+        return this._http.post(`${this._urlBase}registro`, paramsStr, { headers: headers });
     }
 
     //funcion asyncrona con promise
 
-    postLogin(user: UserInterface): Promise<ResApiInterface> {
+    postRegister(user: UserInterface): Promise<ResApiInterface> {
         //consumo primer servicio
         return new Promise((resolve, reject) => {
-            this._postLogin(user).subscribe(
+            this._postRegister(user).subscribe(
                 res => {
                     let resApi: ResApiInterface = {
                         succes: true,
                         response: res
                     }
-                    resolve(resApi)
+
+                    resolve(resApi);
                 },
                 //si algo sale mal
                 err => {
