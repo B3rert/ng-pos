@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav_container" (backdropClick)="close('backdrop')">
     <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
-       
+
     </mat-sidenav>
     <mat-sidenav position="end" #sidenavend (keydown.escape)="close('escape')" disableClose>
 
@@ -17,28 +17,32 @@
     <mat-sidenav-content>
         <mat-toolbar class="toolbarPhone">
             <mat-toolbar-row>
-    <img class="logo" src="assets/logo.png" alt="B3RERT">
-              
-                <span class="spacer"></span>
-                <button mat-icon-button (click)="sidenavend.open()">
-                    <mat-icon>menu</mat-icon>
+                <button mat-icon-button (click)="backPage()">
+                    <mat-icon>arrow_back</mat-icon>
                 </button>
+                <img class="logo" src="assets/logo.png" alt="B3RERT">
+
+                <span class="spacer"></span>
+                <mat-icon class="badgeShop" [matBadge]="transacciones.length" matBadgeColor="warn" (click)="sidenavend.open()">shopping_cart</mat-icon>
+                
             </mat-toolbar-row>
-           
+
         </mat-toolbar>
         <mat-toolbar class="toolbarlarge">
+            <button mat-icon-button (click)="backPage()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
             <img class="logo" src="assets/logo.png" alt="B3RERT">
 
             <span class="spacer"></span>
-            <button mat-icon-button (click)="sidenavend.open()">
-                <mat-icon>menu</mat-icon>
-            </button> 
+            <mat-icon class="badgeShop" [matBadge]="transacciones.length" matBadgeColor="warn" (click)="sidenavend.open()">shopping_cart</mat-icon>
+          
         </mat-toolbar>
         <!--Container-->
         <div class="container_page">
-            
 
-           
+
+
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

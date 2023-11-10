@@ -5,6 +5,8 @@ import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
 import { TransactionPostInterface } from 'src/app/interfaces/transaction.interface';
 import { DocumentService } from 'src/app/services/document.service';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { Location } from '@angular/common'
+
 
 @Component({
   selector: 'app-seller',
@@ -17,14 +19,21 @@ import { TransactionService } from 'src/app/services/transaction.service';
 })
 export class SellerComponent {
 
+  transacciones: TransactionPostInterface[] = [];
+
   constructor(
     private _documentService: DocumentService,
-    private _transactionService: TransactionService
+    private _transactionService: TransactionService,
+    private _location:Location,
     ) {
   
     this.postTransaction();
   }
 
+
+  backPage(){
+    this._location.back();
+  }
 
   //Abrir/Cerrar SideNav
  @ViewChild('sidenav')

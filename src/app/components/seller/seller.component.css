@@ -1,4 +1,8 @@
-  /*SideNav*/
+.badgeShop{
+    cursor: pointer;
+}
+
+/*SideNav*/
 
   .icon_close_head {
     cursor: pointer;

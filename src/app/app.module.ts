@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProgressComponent } from './components/progress/progress.component';
 
+import {MatBadgeModule} from '@angular/material/badge';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -55,6 +56,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MatDialogModule,
     MatMenuModule,
     MatSidenavModule,
+    MatBadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
