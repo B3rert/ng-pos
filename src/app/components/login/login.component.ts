@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
 import { UserInterface } from 'src/app/interfaces/user.interface';
 import { LoginService } from 'src/app/services/login.service';
+import { WidgetsService } from 'src/app/services/widget.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers:[LoginService]
+  providers: [
+    LoginService,
+    WidgetsService,
+  ]
 })
 export class LoginComponent {
   //Declaracion de variables a utilizar
@@ -21,67 +26,68 @@ export class LoginComponent {
   //Intancia de servicios
   constructor(
     private _loginService: LoginService,
-  ) {
-    this.postLogin();
+    private _widgetService: WidgetsService,
+    private _router: Router,
+    ) {
   }
 
-  async postLogin(){
 
-    let user:UserInterface = {
-      usuario:"Niky",
-      clave:"123",
-    }
-
-    let res : ResApiInterface = await this._loginService.postLogin(user);
-
-
-    if(!res.succes){
-      console.error(res.response);
-      
-      alert("Algo salio mal");
-      return;
-    }
-
-
-      console.log(res.response);
-      
-
-  }
 
   //guardar Token y navegar a la pantalla Home
   ngOnInit(): void {
-    // if (StorageService.token) {
-    //   this._router.navigate(['/station']);
-    // }
+    if (localStorage.getItem("user")) {
+      this._router.navigate(['/home']);
+    }
   }
 
   //Validar usuario y contraseña
   async login(): Promise<void> {
 
     if (!this.nombreInput || !this.claveInput) {
-      alert ("Por favor completa todos los campos para continuar")
-      // this._widgetsService.openSnackbar("Por favor completa todos los campos para continuar");
+      this._widgetService.openSnackbar("Por favor completa todos los campos para continuar");
       return
     }
 
-    //Interface de credenciales
-   
-    //TODO: login
 
-   
+    let user: UserInterface = {
+      usuario: this.nombreInput,
+      clave: this.claveInput,
+    }
+
+    this.isLoading = true;
+    let res: ResApiInterface = await this._loginService.postLogin(user);
+    this.isLoading = false;
+
+    if (!res.success) {
+      console.error(res.message);
+      this._widgetService.openSnackbar("Algo salió mal, intentalo más tarde");
+      return;
+    }
+
+    let response:ResApiInterface = res.message;
+
+    
+    if(!response.success){
+      this._widgetService.openSnackbar(response.message);
+      return;
+    }
+
+    console.log("correcto");
+    
+
+    //Sesion permanente
     if (this.saveMyData) {
-      //TODO:sesion permanente
       //guardar el usuario
-      // StorageService.user = 'desa023';
+      localStorage.setItem('user', user.usuario);
+      
     }
     else {
-      //TODO:sesion no permanente
-      
-      // sessionStorage.setItem('user', 'desa023');
+      // sesion no permanente
+      sessionStorage.setItem('user', user.usuario);
     }
 
-    //TODO:Si el usuario esta correcto
-    // this._router.navigate(['/home']);
+    //Si el usuario esta correcto
+     this._router.navigate(['/home']);
   }
 
   //Permanencia de la sesión

@@ -27,16 +27,16 @@ export class DocumentService {
             this._getDocuments().subscribe(
                 res => {
                     let resApi: ResApiInterface = {
-                        succes: true,
-                        response: res
+                        success: true,
+                        message: res
                     }
                     resolve(resApi)
                 },
                 // si algo sale mal
                 err => {
                     let resApi: ResApiInterface = {
-                        succes: false,
-                        response: err
+                        success: false,
+                        message: err
                     }
                     resolve(resApi)
                 },
@@ -58,16 +58,16 @@ export class DocumentService {
             this._getDocumentsByUser(user).subscribe(
                 res => {
                     let resApi: ResApiInterface = {
-                        succes: true,
-                        response: res
+                        success: true,
+                        message: res
                     }
                     resolve(resApi)
                 },
                 // si algo sale mal
                 err => {
                     let resApi: ResApiInterface = {
-                        succes: false,
-                        response: err
+                        success: false,
+                        message: err
                     }
                     resolve(resApi)
                 },
@@ -93,16 +93,16 @@ export class DocumentService {
             this._postDocument(user).subscribe(
                 res => {
                     let resApi: ResApiInterface = {
-                        succes: true,
-                        response: res
+                        success: true,
+                        message: res
                     }
                     resolve(resApi)
                 },
                 //si algo sale mal
                 err => {
                     let resApi: ResApiInterface = {
-                        succes: false,
-                        response: err
+                        success: false,
+                        message: err
                     }
                     resolve(resApi);
 

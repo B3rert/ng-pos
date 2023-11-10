@@ -29,13 +29,13 @@ export class EditProductComponent {
     let res: ResApiInterface = await this._productService.putProduct(product);
 
 
-    if (!res.succes) {
-      console.error(res.response);
+    if (!res.success) {
+      console.error(res.message);
 
       alert("Algo salio mal");
     }
 
 
-    console.log(res.response);
+    console.log(res.message);
   }
 }

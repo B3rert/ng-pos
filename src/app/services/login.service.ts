@@ -32,16 +32,16 @@ export class LoginService {
             this._postLogin(user).subscribe(
                 res => {
                     let resApi: ResApiInterface = {
-                        succes: true,
-                        response: res
+                        success: true,
+                        message: res
                     }
                     resolve(resApi)
                 },
                 //si algo sale mal
                 err => {
                     let resApi: ResApiInterface = {
-                        succes: false,
-                        response: err
+                        success: false,
+                        message: err
                     }
                     resolve(resApi);
 

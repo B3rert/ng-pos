@@ -32,8 +32,8 @@ export class RegisterService {
             this._postRegister(user).subscribe(
                 res => {
                     let resApi: ResApiInterface = {
-                        succes: true,
-                        response: res
+                        success: true,
+                        message: res
                     }
 
                     resolve(resApi);
@@ -41,8 +41,8 @@ export class RegisterService {
                 //si algo sale mal
                 err => {
                     let resApi: ResApiInterface = {
-                        succes: false,
-                        response: err
+                        success: false,
+                        message: err
                     }
                     resolve(resApi);
 

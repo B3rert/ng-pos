@@ -39,13 +39,13 @@ this.getTransactionsByDoc();
     let res: ResApiInterface = await this._productService.getProducts();
 
 
-    if (!res.succes) {
-      console.error(res.response);
+    if (!res.success) {
+      console.error(res.message);
 
       alert("Algo salio mal");
     }
 
-    this.products = res.response;
+    this.products = res.message;
 
     console.log(this.products);
 
@@ -56,13 +56,13 @@ this.getTransactionsByDoc();
     let res: ResApiInterface = await this._documentService.getDocuments();
 
 
-    if (!res.succes) {
-      console.error(res.response);
+    if (!res.success) {
+      console.error(res.message);
 
       alert("Algo salio mal");
     }
 
-    this.documents = res.response;
+    this.documents = res.message;
 
     console.log(this.documents);
 
@@ -74,13 +74,13 @@ this.getTransactionsByDoc();
     let res: ResApiInterface = await this._documentService.getDocumentsByUser("b3rert");
 
 
-    if (!res.succes) {
-      console.error(res.response);
+    if (!res.success) {
+      console.error(res.message);
 
       alert("Algo salio mal");
     }
 
-    this.documents = res.response;
+    this.documents = res.message;
 
     console.log(this.documents);
 
@@ -92,13 +92,13 @@ this.getTransactionsByDoc();
     let res: ResApiInterface = await this._transactionService.getTransactionsByDoc(3);
 
 
-    if (!res.succes) {
-      console.error(res.response);
+    if (!res.success) {
+      console.error(res.message);
 
       alert("Algo salio mal");
     }
 
-    this.documents = res.response;
+    this.documents = res.message;
 
     console.log(this.documents);
 
@@ -108,14 +108,14 @@ this.getTransactionsByDoc();
     let res: ResApiInterface = await this._productService.deleteProduct("1000");
 
 
-    if (!res.succes) {
-      console.error(res.response);
+    if (!res.success) {
+      console.error(res.message);
 
       alert("Algo salio mal");
     }
 
 
-    console.log(res.response);
+    console.log(res.message);
 
   }
 

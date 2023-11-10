@@ -39,13 +39,13 @@ export class SellerComponent {
     let res: ResApiInterface = await this._documentService.postDocument(document);
 
 
-    if (!res.succes) {
-      console.error(res.response);
+    if (!res.success) {
+      console.error(res.message);
 
       alert("Algo salio mal");
     }
 
-    console.log(res.response);
+    console.log(res.message);
 
 
   }
@@ -74,13 +74,13 @@ export class SellerComponent {
     let res: ResApiInterface = await this._transactionService.postTransaction(transaction);
 
 
-    if (!res.succes) {
-      console.error(res.response);
+    if (!res.success) {
+      console.error(res.message);
 
       alert("Algo salio mal");
     }
 
-    console.log(res.response);
+    console.log(res.message);
 
 
   }

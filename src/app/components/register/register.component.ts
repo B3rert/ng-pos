@@ -36,15 +36,15 @@ async postLogin(){
   let res : ResApiInterface = await this._registerService.postRegister(user);
 
 
-  if(!res.succes){
-    console.error(res.response);
+  if(!res.success){
+    console.error(res.message);
     
     alert("Algo salio mal");
     return;
   }
 
 
-    console.log(res.response);
+    console.log(res.message);
     
 
 }

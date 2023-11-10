@@ -1,4 +1,4 @@
 export interface ResApiInterface{
-    succes:boolean;
-    response:any;
+    success:boolean;
+    message:any;
 }

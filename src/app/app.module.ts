@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProgressComponent } from './components/progress/progress.component';
 
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import { AddProductComponent } from './components/add-product/add-product.component';
@@ -39,6 +39,7 @@ import { routing } from './app.routing';
     MatButtonModule,
     HttpClientModule,
     routing,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
