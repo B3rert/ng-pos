@@ -18,7 +18,8 @@ export class HomeComponent {
 
   constructor(private _productService: ProductService) {
 
-    this.getProducts();
+    // this.getProducts();
+    this.deleteProduct();
 
   }
 
@@ -38,6 +39,23 @@ export class HomeComponent {
     this.products = res.response;
 
     console.log(this.products);
+
+  }
+
+
+  async deleteProduct() {
+
+    let res: ResApiInterface = await this._productService.deleteProduct("1000");
+
+
+    if (!res.succes) {
+      console.error(res.response);
+
+      alert("Algo salio mal");
+    }
+
+
+    console.log(res.response);
 
   }
 

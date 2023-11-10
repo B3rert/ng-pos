@@ -83,8 +83,8 @@ export class ProductService {
     }
 
 
-     //funcion que va a realizar consumo privado
-     private _putProduct(product: ProductInterface) {
+    //funcion que va a realizar consumo privado
+    private _putProduct(product: ProductInterface) {
         //configurar headers
         let paramsStr = JSON.stringify(product); //JSON to String
         let headers = new HttpHeaders({ "Content-Type": "application/json" });
@@ -118,4 +118,37 @@ export class ProductService {
 
         });
     }
+
+
+    //funcion que va a realizar el consumo en privado.
+    private _deleteProduct(cod:string) {
+        //consumo de api
+        return this._http.delete(`${this._urlBase}productos/${cod}`);
+    }
+
+    // funcion asyncrona con promise
+    deleteProduct(cod:string): Promise<ResApiInterface> {
+        //consumo del primer servicio
+        return new Promise((resolve, reject) => {
+            this._deleteProduct(cod).subscribe(
+                res => {
+                    let resApi: ResApiInterface = {
+                        succes: true,
+                        response: res
+                    }
+                    resolve(resApi)
+                },
+                // si algo sale mal
+                err => {
+                    let resApi: ResApiInterface = {
+                        succes: false,
+                        response: err
+                    }
+                    resolve(resApi)
+                },
+            );
+        });
+    }
+
+
 }
