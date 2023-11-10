@@ -1,6 +1,6 @@
 
 .products{
-    margin-top: 2cqmin;
+    margin-top: 20px;
 }
 
 .products li{
@@ -11,3 +11,6 @@
 }
 
 
+.content{
+    padding-bottom: 40px;
+}

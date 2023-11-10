@@ -1,1 +1,63 @@
-<p>add-product works!</p>
+
+<app-progress *ngIf="isLoading"></app-progress>
+<div class="content_main" *ngIf="!isLoading">
+    <mat-toolbar class="my_app_bar">
+    
+        <button mat-button (click)="backPage()">Regresar</button>
+
+        <span class="example-spacer"></span>
+    </mat-toolbar>
+
+    <div class="container ">
+        <div class="text">
+            Nuevo producto
+        </div>
+        <form #productForm="ngForm" (ngSubmit)="postPorouct()">
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" required name="sku" [(ngModel)]="codigoProducto">
+                    <div class="underline"></div>
+                    <label for="">Codigo producto</label>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" required name="cantidad" [(ngModel)]="cantidadProducto">
+                    <div class="underline"></div>
+                    <label for="">Cantidad</label>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" required name="price" [(ngModel)]="precioUnitario">
+                    <div class="underline"></div>
+                    <label for="">Precio unitario</label>
+                </div>
+
+            </div>
+           
+
+            <div class="form-row">
+                <div class="input-data textarea">
+                    <textarea rows="8" cols="80" required name="name" [(ngModel)]="nombreProducto"></textarea>
+                    <br />
+                    <div class="underline"></div>
+                    <label for="">Descripcion del producto</label>
+                    <br />
+                      
+                    
+                    <div class="form-row submit-btn">
+                        <div class="input-data">
+                            <div class="inner"></div>
+                            <input type="submit" value="Crear">
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

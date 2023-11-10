@@ -41,6 +41,11 @@ export class HomeComponent {
   }
  
 
+  create(){
+    this._router.navigate(["add"]);
+  }
+
+
   filterProducts() {
     if (this.searchText.trim() === '') {
       // Si la búsqueda está vacía, muestra todos los productos

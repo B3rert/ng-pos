@@ -11,7 +11,7 @@
       <button mat-menu-item>Detallado Documentos</button>
     </mat-menu>
     <button mat-button>Ventas</button>
-    <button mat-button>Nuevo Producto</button>
+    <button mat-button (click)="create()">Nuevo Producto</button>
     <button mat-icon-button (click)="logOut()">
       <mat-icon>logout</mat-icon>
     </button>
@@ -26,17 +26,18 @@
       <h4 class="title_page">Inventario valorizado ({{granTotal | currency}}) </h4>
     </div>
 
-   
+
     <div class="row">
       <div class="col">
-        <input [(ngModel)]="searchText" (input)="filterProducts()" class="form-control" type="text" placeholder="Buscar">
+        <input [(ngModel)]="searchText" (input)="filterProducts()" class="form-control" type="text"
+          placeholder="Buscar">
       </div>
     </div>
 
     <div class="row">
       <div class="col">
 
-<app-not-found *ngIf="filteredProducts.length == 0"></app-not-found>
+        <app-not-found *ngIf="filteredProducts.length == 0"></app-not-found>
 
 
         <ol class="list-group  products" *ngIf="filteredProducts.length > 0">
