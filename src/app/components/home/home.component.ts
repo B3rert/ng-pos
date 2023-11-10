@@ -43,6 +43,11 @@ export class HomeComponent {
   }
  
 
+  seller(){
+    this._router.navigate(["seller"]);
+    
+  }
+
   create(){
     this._router.navigate(["add"]);
   }
