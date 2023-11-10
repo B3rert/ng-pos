@@ -4,6 +4,7 @@ import { ProductInterface } from 'src/app/interfaces/product.interface';
 import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
 import { DocumentService } from 'src/app/services/document.service';
 import { ProductService } from 'src/app/services/product.service';
+import { TransactionService } from 'src/app/services/transaction.service';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { ProductService } from 'src/app/services/product.service';
   providers: [
     ProductService,
     DocumentService,
+    TransactionService,
   ]
 })
 export class HomeComponent {
@@ -21,12 +23,13 @@ export class HomeComponent {
   documents: DocumentInterface[] = [];
 
   constructor(private _productService: ProductService,
-    private _documentService: DocumentService) {}
+    private _documentService: DocumentService,
+    private _transactionService:TransactionService,
+    ) {}
 
   ngOnInit(): void {
     // this.getProducts();
-    this.getDocumentsByUser();
-
+this.getTransactionsByDoc();
   }
 
 
@@ -83,6 +86,23 @@ export class HomeComponent {
 
   }
 
+
+  async getTransactionsByDoc() {
+
+    let res: ResApiInterface = await this._transactionService.getTransactionsByDoc(3);
+
+
+    if (!res.succes) {
+      console.error(res.response);
+
+      alert("Algo salio mal");
+    }
+
+    this.documents = res.response;
+
+    console.log(this.documents);
+
+  }
   async deleteProduct() {
 
     let res: ResApiInterface = await this._productService.deleteProduct("1000");
