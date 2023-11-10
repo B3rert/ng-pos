@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { DocumentPostInterface } from 'src/app/interfaces/document.interface';
 import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
 import { TransactionPostInterface } from 'src/app/interfaces/transaction.interface';
@@ -24,6 +25,18 @@ export class SellerComponent {
     this.postTransaction();
   }
 
+
+  //Abrir/Cerrar SideNav
+ @ViewChild('sidenav')
+ sidenav!: MatSidenav;
+ @ViewChild('sidenavend')
+ sidenavend!: MatSidenav;
+
+ //Abrir cerrar Sidenav
+ close(reason: string) {
+   this.sidenav.close();
+   this.sidenavend.close();
+ }
   async postDocument() {
 
 
