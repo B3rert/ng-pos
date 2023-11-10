@@ -1,54 +1,74 @@
-<!-- Pantalla de carga  -->
-<app-progress *ngIf="isLoading"></app-progress>
-<div *ngIf=" !isLoading">
-    <mat-toolbar class="my_app_bar">
-        <span class="example-spacer"></span>
-        <button mat-button (click)="backPage()">Login</button>
-      </mat-toolbar>
-    <div class="container" >
-       
-        <div class="row" >
-            <div class="col-md-5 mx-auto text-center">
-                <img src="assets/logo.png" alt="">    
-                <div class="login-right">
-                    <!-- Ingresar y validar datos ingresados en los inputs  -->
-                    <form #loginForm="ngForm" (ngSubmit)="register()">
-                        <div class="sign-in">
-                            <!-- Correo o usuario -->
-                            <h4>Usuario</h4>
-                            <input type="text" required [(ngModel)]="nombreInput" name="nombre" autocomplete="off">
-                        </div>
-                        <div class="sign-in">
-                            <!-- Contraseña  -->
-                            <h4>Contraseña</h4>
-                            <input *ngIf="!mostrarTexto" type="password" required [(ngModel)]="claveInput" name="clave">
-                            <input *ngIf="mostrarTexto" type="text" required [(ngModel)]="claveInput" name="clave"
-                                autocomplete="off">
-                            <br>
-                           
-                        </div>
+<mat-sidenav-container class="sidenav_container" >
     
-                        <div class="sign-in">
-                            <!-- Contraseña  -->
-                            <h4>Confirmar Contraseña</h4>
-                            <input *ngIf="!mostrarTexto" type="password" required [(ngModel)]="confirmarClaveInput" name="clave">
-                            <input *ngIf="mostrarTexto" type="text" required [(ngModel)]="confirmarClaveInput" name="clave"
-                                autocomplete="off">
-                            <br>
-                            <!-- Ver y ocutar contraseña -->
-                            <p *ngIf="!mostrarTexto" (click)="this.mostrarTexto = !this.mostrarTexto">Ver contraseñas</p>
-                            <p *ngIf="mostrarTexto" (click)="this.mostrarTexto = !this.mostrarTexto">Ocultar contraseña</p>
-                            <!-- <a>Olvidaste tu contraseña?</a> -->
-                            <!-- <a>Registrate</a> -->
+    <mat-sidenav-content>
+        <mat-toolbar class="toolbarPhone">
+            <mat-toolbar-row>
+    <img class="logo" src="assets/logo.png" alt="B3RERT">
+              
+                <span class="spacer"></span>
+                <button mat-button (click)="backPage()">Login</button>
+
+            </mat-toolbar-row>
+           
+        </mat-toolbar>
+        <mat-toolbar class="toolbarlarge">
+            <img class="logo" src="assets/logo.png" alt="B3RERT">
+
+            <span class="spacer"></span>
+            <button mat-button (click)="backPage()">Login</button>
+
+        </mat-toolbar>
+        <!--Container-->
+        <div class="container_page">
+            <div class="container" >
+       
+                <div class="row" >
+                    <div class="col-md-5 mx-auto text-center">
+                        <img src="assets/logo.png" alt="">    
+                        <div class="login-right">
+                            <!-- Ingresar y validar datos ingresados en los inputs  -->
+                            <form #loginForm="ngForm" (ngSubmit)="register()">
+                                <div class="sign-in">
+                                    <!-- Correo o usuario -->
+                                    <h4>Usuario</h4>
+                                    <input type="text" required [(ngModel)]="nombreInput" name="nombre" autocomplete="off">
+                                </div>
+                                <div class="sign-in">
+                                    <!-- Contraseña  -->
+                                    <h4>Contraseña</h4>
+                                    <input *ngIf="!mostrarTexto" type="password" required [(ngModel)]="claveInput" name="clave">
+                                    <input *ngIf="mostrarTexto" type="text" required [(ngModel)]="claveInput" name="clave"
+                                        autocomplete="off">
+                                    <br>
+                                   
+                                </div>
+            
+                                <div class="sign-in">
+                                    <!-- Contraseña  -->
+                                    <h4>Confirmar Contraseña</h4>
+                                    <input *ngIf="!mostrarTexto" type="password" required [(ngModel)]="confirmarClaveInput" name="clave">
+                                    <input *ngIf="mostrarTexto" type="text" required [(ngModel)]="confirmarClaveInput" name="clave"
+                                        autocomplete="off">
+                                    <br>
+                                    <!-- Ver y ocutar contraseña -->
+                                    <p *ngIf="!mostrarTexto" (click)="this.mostrarTexto = !this.mostrarTexto">Ver contraseñas</p>
+                                    <p *ngIf="mostrarTexto" (click)="this.mostrarTexto = !this.mostrarTexto">Ocultar contraseña</p>
+                                    <!-- <a>Olvidaste tu contraseña?</a> -->
+                                    <!-- <a>Registrate</a> -->
+                                </div>
+                               
+                                <!-- Ingresar, iniciar sesion -->
+                                <div class="sign-in">
+                                    <input type="submit" value="Registrate">
+                                </div>
+                            </form>
                         </div>
-                       
-                        <!-- Ingresar, iniciar sesion -->
-                        <div class="sign-in">
-                            <input type="submit" value="Registrate">
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
+
+           
         </div>
-    </div>
-</div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
