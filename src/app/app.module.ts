@@ -17,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { SellerComponent } from './components/seller/seller.component';
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SellerComponent } from './components/seller/seller.component';
     MatToolbarModule,
     MatButtonModule,
     HttpClientModule,
+    routing,
   ],
   providers: [],
   bootstrap: [AppComponent]
