@@ -1,63 +1,82 @@
-
 <app-progress *ngIf="isLoading"></app-progress>
-<div class="content_main" *ngIf="!isLoading">
-    <mat-toolbar class="my_app_bar">
-    
-        <button mat-button (click)="backPage()">Regresar</button>
 
-        <span class="example-spacer"></span>
-    </mat-toolbar>
+<mat-sidenav-container *ngIf="!isLoading" class="sidenav_container">
 
-    <div class="container ">
-        <div class="text">
-            Actualizar producto
-        </div>
-        <form #productForm="ngForm" (ngSubmit)="putPorouct()">
-            <div class="form-row">
-                <div class="input-data">
-                    <input type="text" required name="sku" [(ngModel)]="product. codigoProducto" >
-                    <div class="underline"></div>
-                    <label for="">Codigo producto</label>
+    <mat-sidenav-content>
+        <mat-toolbar class="toolbarPhone">
+            <mat-toolbar-row>
+                <button mat-button (click)="backPage()">Regresar</button>
+
+                <span class="spacer"></span>
+                <img class="logo" src="assets/logo.png" alt="B3RERT">
+              
+            </mat-toolbar-row>
+
+        </mat-toolbar>
+        <mat-toolbar class="toolbarlarge">
+            <button mat-button (click)="backPage()">Regresar</button>
+            
+            <span class="spacer"></span>
+            <img class="logo" src="assets/logo.png" alt="B3RERT">
+            
+        </mat-toolbar>
+        <!--Container-->
+        <div class="container_page">
+
+
+            <div class="container ">
+                <div class="text">
+                    Actualizar producto
                 </div>
-
-            </div>
-            <div class="form-row">
-                <div class="input-data">
-                    <input type="text" required name="cantidad" [(ngModel)]="product. cantidadProducto">
-                    <div class="underline"></div>
-                    <label for="">Cantidad</label>
-                </div>
-
-            </div>
-            <div class="form-row">
-                <div class="input-data">
-                    <input type="text" required name="price" [(ngModel)]="product. precioUnitario">
-                    <div class="underline"></div>
-                    <label for="">Precio unitario</label>
-                </div>
-
-            </div>
-           
-
-            <div class="form-row">
-                <div class="input-data textarea">
-                    <textarea rows="8" cols="80" required name="name" [(ngModel)]="product. nombreProducto"></textarea>
-                    <br />
-                    <div class="underline"></div>
-                    <label for="">Descripcion del producto</label>
-                    <br />
-                      
-                    
-                    <div class="form-row submit-btn">
+                <form #productForm="ngForm" (ngSubmit)="putPorouct()">
+                    <div class="form-row">
                         <div class="input-data">
-                            <div class="inner"></div>
-                            <input type="submit" value="Actualizar">
+                            <input type="text" required name="sku" [(ngModel)]="product. codigoProducto">
+                            <div class="underline"></div>
+                            <label for="">Codigo producto</label>
+                        </div>
+        
+                    </div>
+                    <div class="form-row">
+                        <div class="input-data">
+                            <input type="text" required name="cantidad" [(ngModel)]="product. cantidadProducto">
+                            <div class="underline"></div>
+                            <label for="">Cantidad</label>
+                        </div>
+        
+                    </div>
+                    <div class="form-row">
+                        <div class="input-data">
+                            <input type="text" required name="price" [(ngModel)]="product. precioUnitario">
+                            <div class="underline"></div>
+                            <label for="">Precio unitario</label>
+                        </div>
+        
+                    </div>
+        
+        
+                    <div class="form-row">
+                        <div class="input-data textarea">
+                            <textarea rows="8" cols="80" required name="name" [(ngModel)]="product. nombreProducto"></textarea>
+                            <br />
+                            <div class="underline"></div>
+                            <label for="">Descripcion del producto</label>
+                            <br />
+        
+        
+                            <div class="form-row submit-btn">
+                                <div class="input-data">
+                                    <div class="inner"></div>
+                                    <input type="submit" value="Actualizar">
+                                </div>
+                            </div>
+        
                         </div>
                     </div>
-                   
-                </div>
+                </form>
+        
             </div>
-        </form>
 
-    </div>
-</div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
