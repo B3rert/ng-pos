@@ -16,6 +16,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { SellerComponent } from './components/seller/seller.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     HomeComponent,
     ProgressComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    SellerComponent
   ],
   imports: [
     BrowserModule,
