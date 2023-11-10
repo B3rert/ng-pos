@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DocumentInterface } from 'src/app/interfaces/document.interface';
 import { ProductInterface } from 'src/app/interfaces/product.interface';
 import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
+import { DataService } from 'src/app/services/data.service';
 import { DocumentService } from 'src/app/services/document.service';
 import { ProductService } from 'src/app/services/product.service';
 import { TransactionService } from 'src/app/services/transaction.service';
@@ -34,6 +35,7 @@ export class HomeComponent {
     private _transactionService: TransactionService,
     private _widgetService: WidgetsService,
     private _router: Router,
+    private _dataService: DataService,
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +45,12 @@ export class HomeComponent {
 
   create(){
     this._router.navigate(["add"]);
+  }
+
+  editProduct(product:ProductInterface){
+    this._router.navigate(['/edit']);
+
+    this._dataService.setSharedData(product);
   }
 
 
