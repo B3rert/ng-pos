@@ -3,7 +3,7 @@
 <div *ngIf="!isLoading">
     <mat-toolbar class="my_app_bar">
         <span class="example-spacer"></span>
-        <button mat-button>Registrate</button>
+        <button mat-button (click)="navRegister()">Registrate</button>
     </mat-toolbar>
     <div class="container" *ngIf=" !isLoading">
         <div class="row">

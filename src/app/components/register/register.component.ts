@@ -1,82 +1,83 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
 import { UserInterface } from 'src/app/interfaces/user.interface';
 import { RegisterService } from 'src/app/services/register.service';
+import { Location } from '@angular/common'
+import { WidgetsService } from 'src/app/services/widget.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers:[RegisterService]
+  providers: [
+    RegisterService,
+  WidgetsService,
+  ]
 })
 export class RegisterComponent {
-//Declaracion de variables a utilizar
-nombreInput: string = "";
-claveInput: string = "";
-confirmarClaveInput: string = "";
-saveMyData: boolean = false;
-mostrarTexto: boolean = false;
-isLoading: boolean = false;
+  //Declaracion de variables a utilizar
+  nombreInput: string = "";
+  claveInput: string = "";
+  confirmarClaveInput: string = "";
+  mostrarTexto: boolean = false;
+  isLoading: boolean = false;
 
 
-//Intancia de servicios
-constructor(
-  private _registerService: RegisterService,
-) {
-  this.postLogin()
-}
-
-async postLogin(){
-
-  let user:UserInterface = {
-    usuario:"Niky",
-    clave:"123",
+  //Intancia de servicios
+  constructor(
+    private _registerService: RegisterService,
+    private _location: Location,
+    private _router:Router,
+    private _widgetService:WidgetsService,
+  ) {
   }
 
-  let res : ResApiInterface = await this._registerService.postRegister(user);
+  backPage() {
+    this._location.back();
+  }
+
+  //Validar usuario y contraseña
+  async register(): Promise<void> {
+
+    if (!this.nombreInput || !this.claveInput || !this.confirmarClaveInput) {
+      this._widgetService.openSnackbar("Por favor completa todos los campos para continuar.");
+      return;
+    }
+
+    if(this.claveInput != this.confirmarClaveInput){
+      this._widgetService.openSnackbar("Las contraseñas no coinciden.");
+      return;
+    }
 
 
-  if(!res.success){
-    console.error(res.message);
+    let user: UserInterface = {
+      usuario: this.nombreInput,
+      clave: this.claveInput,
+    }
+
+    this.isLoading = true;
+    let res: ResApiInterface = await this._registerService.postRegister(user);
+    this.isLoading = false;
+
+    if (!res.success) {
+      console.error(res.message);
+      this._widgetService.openSnackbar("Algo salió mal, intentalo más tarde");
+      return;
+    }
+
+    let response:ResApiInterface = res.message;
+
     
-    alert("Algo salio mal");
-    return;
+    if(!response.success){
+      this._widgetService.openSnackbar(response.message);
+      return;
+    }
+
+
+
+    this._router.navigate(['/home']);
   }
-
-
-    console.log(res.message);
-    
-
-}
-
-
-//Validar usuario y contraseña
-async login(): Promise<void> {
-
-  if (!this.nombreInput || !this.claveInput) {
-    alert ("Por favor completa todos los campos para continuar")
-    // this._widgetsService.openSnackbar("Por favor completa todos los campos para continuar");
-    return
-  }
-
-
-  //TODO: login
-
- 
-  if (this.saveMyData) {
-    //TODO:sesion permanente
-    //guardar el usuario
-    // StorageService.user = 'desa023';
-  }
-  else {
-    //TODO:sesion no permanente
-    
-    // sessionStorage.setItem('user', 'desa023');
-  }
-
-  //TODO:Si el usuario esta correcto
-  // this._router.navigate(['/home']);
-}
 
 
 }

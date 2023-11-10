@@ -40,6 +40,11 @@ export class LoginComponent {
     }
   }
 
+
+  navRegister(){
+    this._router.navigate(['/register']);
+  }
+
   //Validar usuario y contraseña
   async login(): Promise<void> {
 
@@ -72,8 +77,6 @@ export class LoginComponent {
       return;
     }
 
-    console.log("correcto");
-    
 
     //Sesion permanente
     if (this.saveMyData) {
