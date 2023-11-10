@@ -1,11 +1,17 @@
-<div >
+<div>
   <mat-toolbar class="my_app_bar">
     <!-- <img class="logo" src="assets/logo.png" alt="B3RERT"> -->
 
     <span class="example-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>arrow_drop_down</mat-icon> Reportes</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Catalogo de productos</button>
+      <button mat-menu-item>Documentos Resumidos</button>
+      <button mat-menu-item>Documentos Detallados</button>
+    </mat-menu>
     <button mat-button>Vender</button>
     <button mat-button>Nuevo Producto</button>
-    <button mat-icon-button (click)="logOut()"> 
+    <button mat-icon-button (click)="logOut()">
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>
