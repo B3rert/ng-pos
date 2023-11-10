@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { DocumentInterface } from 'src/app/interfaces/document.interface';
 import { ProductInterface } from 'src/app/interfaces/product.interface';
 import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
 import { DocumentService } from 'src/app/services/document.service';
 import { ProductService } from 'src/app/services/product.service';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { WidgetsService } from 'src/app/services/widget.service';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
     ProductService,
     DocumentService,
     TransactionService,
+    WidgetsService,
   ]
 })
 export class HomeComponent {
@@ -21,15 +24,17 @@ export class HomeComponent {
 
   products: ProductInterface[] = [];
   documents: DocumentInterface[] = [];
+  granTotal: number = 0;
 
   constructor(private _productService: ProductService,
     private _documentService: DocumentService,
     private _transactionService:TransactionService,
+    private _widgetService:WidgetsService,
+    private _router:Router,
     ) {}
 
   ngOnInit(): void {
-    // this.getProducts();
-this.getTransactionsByDoc();
+    this.getProducts();
   }
 
 
@@ -42,12 +47,15 @@ this.getTransactionsByDoc();
     if (!res.success) {
       console.error(res.message);
 
-      alert("Algo salio mal");
+      this._widgetService.openSnackbar("Algo salio mal, intentalo más tarde.");
     }
 
     this.products = res.message;
 
-    console.log(this.products);
+
+    this.products.forEach(element => {
+      this.granTotal = (element.cantidadProducto *element.precioUnitario) + this.granTotal;
+    });
 
   }
 
@@ -117,6 +125,26 @@ this.getTransactionsByDoc();
 
     console.log(res.message);
 
+  }
+
+
+  //Cerra sesion
+  async logOut() {
+
+    //dialog confurmar cierre de sesion
+    let verificador = await this._widgetService.openDialogActions({
+      title:  "Cerrar sesión" ,
+      description:  "Se perderán los datos que no han sido guardados ¿Estás seguro?" ,
+      verdadero: "Aceptar",
+      falso: "Cancelar",
+    });
+
+    if (!verificador) return;
+    //Limpiar datos del storage
+    localStorage.clear();
+    sessionStorage.clear();
+    //return to login and delete de navigation route
+    this._router.navigate(['/login']);
   }
 
 

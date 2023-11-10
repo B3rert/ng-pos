@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+
 import {  HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -11,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProgressComponent } from './components/progress/progress.component';
 
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -18,6 +21,8 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { SellerComponent } from './components/seller/seller.component';
 import { routing } from './app.routing';
+import { CurrencyPipe } from './pipes/currency.pipe';
+import { DialogActionsComponent } from './components/dialog-actions/dialog-actions.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,9 @@ import { routing } from './app.routing';
     ProgressComponent,
     AddProductComponent,
     EditProductComponent,
-    SellerComponent
+    SellerComponent,
+    CurrencyPipe,
+    DialogActionsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +47,8 @@ import { routing } from './app.routing';
     HttpClientModule,
     routing,
     MatSnackBarModule,
+    MatIconModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
