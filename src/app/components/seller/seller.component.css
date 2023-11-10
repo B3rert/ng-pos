@@ -62,16 +62,16 @@ mat-sidenav {
 
 /*Contendo derecho*/
 
-.container_main::-webkit-scrollbar {
+.container_page::-webkit-scrollbar {
     width: 7px;
 }
 
-.container_main::-webkit-scrollbar-track {
+.container_page::-webkit-scrollbar-track {
     background: #f3c5d3;
 }
 
-.container_main::-webkit-scrollbar-thumb {
-    background-color: #FD306E;
+.container_page::-webkit-scrollbar-thumb {
+    background-color: #942545;
     border-radius: 20px;
     border: 3px #f3c5d3;
 }
@@ -81,7 +81,10 @@ mat-sidenav {
     width: 100vw;
     margin-top: 65px;
     position: fixed;
+    overflow: auto;
+
 }
+
 
 
 .container_main {

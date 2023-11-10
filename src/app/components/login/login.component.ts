@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
 import { UserInterface } from 'src/app/interfaces/user.interface';
@@ -30,7 +31,17 @@ export class LoginComponent {
     private _router: Router,
     ) {
   }
-
+  //Abrir/Cerrar SideNav
+  @ViewChild('sidenav')
+  sidenav!: MatSidenav;
+  @ViewChild('sidenavend')
+  sidenavend!: MatSidenav;
+ 
+  //Abrir cerrar Sidenav
+  close(reason: string) {
+    this.sidenav.close();
+    this.sidenavend.close();
+  }
 
 
   //guardar Token y navegar a la pantalla Home
