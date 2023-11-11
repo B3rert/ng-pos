@@ -1,5 +1,5 @@
 # POS Web
-Pos y reportes.
+Pos y reportes. Puede encontrar el proyecto con las apis [aquí.](https://github.com/B3rert/java-pos) 
 
 ## Contenido
 
