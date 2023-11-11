@@ -1,4 +1,5 @@
-<mat-sidenav-container class="sidenav_container" (backdropClick)="close('backdrop')">
+<app-progress *ngIf="isLoading"></app-progress>
+<mat-sidenav-container class="sidenav_container" (backdropClick)="close('backdrop')" *ngIf="!isLoading">
     <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
 
     </mat-sidenav>
@@ -9,9 +10,52 @@
                 <mat-icon>close</mat-icon>
             </button>
             <span class="spacer"></span>
-            <h6>Encabezado</h6>
+            <h6>Mis Produtos</h6>
             <span class="spacer"></span>
         </mat-toolbar>
+
+        <ol class="list-group transacciones">
+            <div *ngFor="let transaccion of transacciones; let i = index">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div>{{transaccion.product.nombreProducto}}</div>
+                        {{transaccion.product.precioUnitario | currency}} x {{transaccion.cantidad}}
+                    </div>
+                    <div class="ms-2 ">
+                        <div class="d-flex">
+                            <span class="spacer"></span>
+
+                            <button mat-icon-button (click)="deleteItem(i)">
+                                <mat-icon>delete_outline</mat-icon>
+
+                            </button>
+                        </div>
+                        <div class="form_unit">
+                            <mat-icon class="btn_menos" (click)="removeCantidad(i)">remove</mat-icon>
+                            <input class="input_forms" type="number" [value]="transaccion.cantidad" readonly="">
+                            <mat-icon class="btn_mas" (click)="addCantidad(i)">add</mat-icon>
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </ol>
+
+        <div class="footer_carrito" *ngIf="transacciones.length > 0">
+            <div class="cont_sub">
+                <input type="button" value="Vaciar Carrito" (click)="limpiarCarrito()">
+            </div>
+            <div class="cont_total">
+                <p>Total.</p>
+                <p>{{total | currency}}</p>
+            </div>
+            <input type="button" class="btn_paymentsales " (click)="confirDoc()" value="Continuar">
+        </div>
+        <div class="footer_carrito" *ngIf="transacciones.length == 0">
+            <div class="cont_sub">
+                <input type="button" value="Carrito Vacio">
+            </div>
+        </div>
+
 
     </mat-sidenav>
     <mat-sidenav-content>
@@ -56,10 +100,11 @@
                         <app-not-found *ngIf="filteredProducts.length == 0"></app-not-found>
 
 
-                        <ol class="list-group  products" *ngIf="filteredProducts.length > 0" >
+                        <ol class="list-group  products" *ngIf="filteredProducts.length > 0">
                             <li *ngFor="let product of filteredProducts; let i = index"
-                                class="list-group-item d-flex justify-content-between align-items-start" (click)="addProduct(product)">
-                                <div class="ms-2 me-auto" >
+                                class="list-group-item d-flex justify-content-between align-items-start"
+                                (click)="addProduct(product)">
+                                <div class="ms-2 me-auto">
                                     <div>(SKU {{product.codigoProducto}}) {{product.nombreProducto}} </div>
                                     <div>Existencias: {{product.cantidadProducto}} </div>
                                     Precio unitario: {{product.precioUnitario | currency}}
