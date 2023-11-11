@@ -1,6 +1,8 @@
 # POS Web
 Pos y reportes.
 
+## Contenido
+
 - [POS Web](#pos-web)
   - [login](#login)
   - [Crear usuario](#crear-usuario)
