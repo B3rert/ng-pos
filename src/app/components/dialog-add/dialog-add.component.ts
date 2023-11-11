@@ -28,6 +28,7 @@ export class DialogAddComponent {
   }
 
   addCantidad() {
+    if(this.cantidad == this.data.cantidadProducto) return;
     this.cantidad++;
   }
 

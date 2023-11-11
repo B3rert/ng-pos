@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { DocumentPostInterface } from 'src/app/interfaces/document.interface';
+import { DocumentInterface, DocumentPostInterface } from 'src/app/interfaces/document.interface';
 import { ResApiInterface } from 'src/app/interfaces/res-api.interface';
 import { TransactionPostInterface } from 'src/app/interfaces/transaction.interface';
 import { DocumentService } from 'src/app/services/document.service';
@@ -11,6 +11,7 @@ import { WidgetsService } from 'src/app/services/widget.service';
 import { ProductService } from 'src/app/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddComponent } from '../dialog-add/dialog-add.component';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -46,19 +47,49 @@ export class SellerComponent {
   }
 
 
-    addProduct(product:ProductInterface){
-      const dialogRef = this._dialog.open(DialogAddComponent, {
-        data: product
+  async addProduct(product: ProductInterface) {
+    let dialogRef = this._dialog.open(DialogAddComponent, {
+      data: product
     });
-    dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-            //hay respuest
-        } else {
-          //no hay respúesta
-        }
-    });
+
+    let cantidad: number = await dialogRef.afterClosed().toPromise() ?? 0;
+
+
+    if (cantidad == 0) return;
+
+
+    let date: Date = new Date();
+
+    let document: DocumentInterface = {
+      fecha: date,
+      id: 0,
+      titulo: "FACT",
+      usuario: UserService.getUser()!
     }
-  
+
+    let transaccion: TransactionPostInterface = {
+      cantidadVendida: cantidad,
+      codigoProducto: product.codigoProducto,
+      documento: document,
+      precioUnitario: product.precioUnitario,
+      usuario: UserService.getUser()!
+    }
+
+    this.transacciones.push(transaccion);
+
+
+    for (let index = 0; index < this.products.length; index++) {
+      let item:ProductInterface = this.products[index];
+      
+      if(item.codigoProducto == product.codigoProducto){
+        this.products[0].cantidadProducto = item.cantidadProducto -cantidad;
+        break;
+      }
+      
+    }
+
+  }
+
   filterProducts() {
     if (this.searchText.trim() === '') {
       // Si la búsqueda está vacía, muestra todos los productos
@@ -87,7 +118,7 @@ export class SellerComponent {
     this.filteredProducts = this.products;
 
 
-    
+
 
   }
 
