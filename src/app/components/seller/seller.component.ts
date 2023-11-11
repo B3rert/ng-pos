@@ -274,7 +274,6 @@ export class SellerComponent {
       "usuario": UserService.getUser()!
     };
 
-    // TODO: rebajar inventario
 
     this.isLoading = true;
     let resDoc: ResApiInterface = await this._documentService.postDocument(document);
@@ -309,6 +308,24 @@ export class SellerComponent {
 
       }
 
+      let putProduct: ProductInterface;
+      for (const iterator of this.products) {
+        if (iterator.codigoProducto == item.product.codigoProducto) {
+          putProduct = iterator;
+        }
+      }
+
+
+
+      let resUpdate: ResApiInterface = await this._productService.putProduct(putProduct!);
+
+      if (!resUpdate.success) {
+        this.isLoading = false
+        console.error(resUpdate.message);
+
+        this._widgetService.openSnackbar("Algo salió mal, intentalo más tarde");
+
+      }
 
     }
 
