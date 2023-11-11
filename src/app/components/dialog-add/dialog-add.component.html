@@ -1,0 +1,34 @@
+<div class="dialogModal">
+    <h2 mat-dialog-title>Agregar producto</h2>
+    <mat-dialog-content>
+
+        <ol class="list-group  products">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div>(SKU {{data.codigoProducto}}) {{data.nombreProducto}} </div>
+                    <div>Existencias: {{data.cantidadProducto}} </div>
+                    Precio unitario: {{data.precioUnitario | currency}}
+                </div>
+
+
+            </li>
+
+        </ol>
+
+        
+        <div class="form_unit">
+            <mat-icon class="btn_menos" (click)="removeCantidad()">remove</mat-icon>
+
+            <input class="input_forms" type="number"
+                [value]="cantidad" readonly="">
+                <mat-icon class="btn_mas" (click)="addCantidad()">add</mat-icon>
+                
+        </div>
+
+    </mat-dialog-content>
+    <div mat-dialog-actions>
+        <span class="spacer"></span>
+        <button mat-button [mat-dialog-close]="cantidad">Cancelar</button>
+        <button mat-button [mat-dialog-close]="cantidad" cdkFocusInitial>Aceptar</button>
+    </div>
+</div>

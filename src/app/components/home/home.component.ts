@@ -24,13 +24,14 @@ export class HomeComponent {
 
 
   products: ProductInterface[] = [];
+  filteredProducts: ProductInterface[] = []; // Lista filtrada
   documents: DocumentInterface[] = [];
   granTotal: number = 0;
   isLoading: boolean = false;
-  filteredProducts: ProductInterface[] = []; // Lista filtrada
   searchText: string = ''; // Texto de búsqueda
 
-  constructor(private _productService: ProductService,
+  constructor(
+    private _productService: ProductService,
     private _documentService: DocumentService,
     private _transactionService: TransactionService,
     private _widgetService: WidgetsService,

@@ -23,8 +23,9 @@
                 <img class="logo" src="assets/logo.png" alt="B3RERT">
 
                 <span class="spacer"></span>
-                <mat-icon class="badgeShop" [matBadge]="transacciones.length" matBadgeColor="warn" (click)="sidenavend.open()">shopping_cart</mat-icon>
-                
+                <mat-icon class="badgeShop" [matBadge]="transacciones.length" matBadgeColor="warn"
+                    (click)="sidenavend.open()">shopping_cart</mat-icon>
+
             </mat-toolbar-row>
 
         </mat-toolbar>
@@ -35,12 +36,42 @@
             <img class="logo" src="assets/logo.png" alt="B3RERT">
 
             <span class="spacer"></span>
-            <mat-icon class="badgeShop" [matBadge]="transacciones.length" matBadgeColor="warn" (click)="sidenavend.open()">shopping_cart</mat-icon>
-          
+            <mat-icon class="badgeShop" [matBadge]="transacciones.length" matBadgeColor="warn"
+                (click)="sidenavend.open()">shopping_cart</mat-icon>
+
         </mat-toolbar>
         <!--Container-->
         <div class="container_page">
+            <div class="container container_products">
+                <div class="row">
+                    <div class="col">
+                        <input [(ngModel)]="searchText" (input)="filterProducts()" class="form-control searchText"
+                            type="text" placeholder="Buscar">
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col">
+
+                        <app-not-found *ngIf="filteredProducts.length == 0"></app-not-found>
+
+
+                        <ol class="list-group  products" *ngIf="filteredProducts.length > 0" >
+                            <li *ngFor="let product of filteredProducts; let i = index"
+                                class="list-group-item d-flex justify-content-between align-items-start" (click)="addProduct(product)">
+                                <div class="ms-2 me-auto" >
+                                    <div>(SKU {{product.codigoProducto}}) {{product.nombreProducto}} </div>
+                                    <div>Existencias: {{product.cantidadProducto}} </div>
+                                    Precio unitario: {{product.precioUnitario | currency}}
+                                </div>
+
+
+                            </li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
 
 
         </div>

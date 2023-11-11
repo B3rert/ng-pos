@@ -2,6 +2,27 @@
     cursor: pointer;
 }
 
+.container_products{
+    padding-top: 20px;
+    padding-bottom: 100px;
+}
+.searchText{
+    margin-bottom: 20px;
+    background: transparent;
+    color: #fff;
+}
+.searchText::placeholder{
+    color: #fff;
+}
+
+.products{
+    cursor: pointer;
+}
+.products li{
+    color: #fff;
+
+    background: transparent;
+}
 /*SideNav*/
 
   .icon_close_head {

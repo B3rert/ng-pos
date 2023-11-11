@@ -1,0 +1,64 @@
+.dialogModal {
+    width: 80vw;
+}
+
+
+button {
+    margin-right: 20px;
+}
+
+.products {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.products li {
+    color: #fff;
+
+    background: transparent;
+}
+
+.form_unit {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+}
+
+
+.input_forms {
+    width       : 50px;
+    height      : 30px;
+    border      : 1px solid #fff;
+    margin      : 0;
+    user-select : none;
+    outline     : none !important;
+    text-align  : center;
+    padding-left: 10px;
+    background  : transparent;
+    color       : #FFF;
+}
+
+
+.btn_mas,
+.btn_menos {
+    color          : #FFF;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    width          : 30px;
+    height         : 30px;
+    cursor         : pointer;
+    margin-top     : 0;
+    border         : 1px solid #fff;
+
+}
+
+.btn_mas {
+    border-radius: 0 5px 5px 0;
+    border-left  : none;
+}
+
+.btn_menos {
+    border-radius: 5px 0 0 5px;
+    border-right : none;
+}

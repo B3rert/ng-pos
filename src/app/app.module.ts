@@ -27,6 +27,7 @@ import { routing } from './app.routing';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { DialogActionsComponent } from './components/dialog-actions/dialog-actions.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { DialogAddComponent } from './components/dialog-add/dialog-add.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     SellerComponent,
     CurrencyPipe,
     DialogActionsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    DialogAddComponent
   ],
   imports: [
     BrowserModule,
