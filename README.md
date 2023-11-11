@@ -1,6 +1,23 @@
 # POS Web
 Pos y reportes.
 
+- [POS Web](#pos-web)
+  - [login](#login)
+  - [Crear usuario](#crear-usuario)
+  - [Inicio](#inicio)
+  - [Crear productos](#crear-productos)
+  - [Modificar productos](#modificar-productos)
+  - [POS](#pos)
+    - [Agregar producto al carrito](#agregar-producto-al-carrito)
+    - [Ver Carrito](#ver-carrito)
+  - [Reportes](#reportes)
+    - [Catalgo de productos](#catalgo-de-productos)
+    - [Resumen Documentos](#resumen-documentos)
+    - [Detallado Documentos](#detallado-documentos)
+- [Notas](#notas)
+  - [Recursos utilizados.](#recursos-utilizados)
+
+
 ## login
 
 Inicia sesion con usuario y cintraeña.
