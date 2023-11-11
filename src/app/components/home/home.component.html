@@ -8,11 +8,11 @@
         <img class="logo" src="assets/logo.png" alt="B3RERT">
 
         <span class="spacer"></span>
-        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>arrow_drop_down</mat-icon> Reportes</button>
+        <button   mat-button [matMenuTriggerFor]="menu"><mat-icon>arrow_drop_down</mat-icon> Reportes</button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Catalogo de productos</button>
-          <button mat-menu-item>Resumido Documentos</button>
-          <button mat-menu-item>Detallado Documentos</button>
+          <button (click)="reportProducts()" mat-menu-item>Catalogo de productos</button>
+          <button mat-menu-item (click)="reportDocuments()">Resumido Documentos</button>
+          <button mat-menu-item (click)="reportDocumentsDetails()">Detallado Documentos</button>
         </mat-menu>
         <button mat-button (click)="seller()">Ventas</button>
         <button mat-button (click)="create()">Nuevo Producto</button>
